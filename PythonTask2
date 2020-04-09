@@ -1,0 +1,66 @@
+import string
+import random
+
+print('Welcome to MOLECULES!! Your one number Data Collection Center')
+
+
+def molecules_user_data_entry():
+    user_first_name = input("Enter your First Name here: ")
+    user_last_name = input("Enter your Last Name here: ")
+    user_email = input("Enter your E-mail: ")
+
+    user_data_list_mole = [user_first_name, user_last_name, user_email]
+
+    return user_data_list_mole
+
+
+def user_password(user_data_list_mole):
+    rand_pass_big_alpha = string.ascii_uppercase
+    rnd_pas_length = 5
+    arbitrary_pass_string = ''.join(random.choice(rand_pass_big_alpha) for i in range(rnd_pas_length))
+    mole_password = str(user_data_list_mole[0][0:2] + user_data_list_mole[1][-2:] + arbitrary_pass_string)
+
+    return mole_password
+
+
+data_entry_satisfaction = True
+molecules_user_list = []
+
+while data_entry_satisfaction:
+    mole_user_data_list = molecules_user_data_entry()
+    password = user_password(mole_user_data_list)
+    print('Your Password is: ' + password)
+
+    pass_satisfied = input('Are you satisfied with the generated password? if yes, enter "Y", if no, Enter"N" \n')
+
+    pass_retype_loop = True
+
+    while pass_retype_loop:
+        if pass_satisfied == "Y":
+            mole_user_data_list.append(password)
+            molecules_user_list.append(mole_user_data_list)
+            pass_retype_loop = False
+
+        else:
+            user_personalized_pass = input("Enter a new password which should be greater or equal to 7 characters\n")
+            user_pass = True
+            while user_pass:
+                if len(user_personalized_pass) >= 7:
+                    mole_user_data_list.append(password)
+                    molecules_user_list.append(mole_user_data_list)
+                    user_pass = False
+                    pass_retype_loop = False
+
+                else:
+                    print('Your password is less than 7')
+                    user_personalized_pass = input('Enter new passkey which '
+                                                   'should be greater or equal to 7 characters \n')
+
+    molecule_new_user = input('Would you like to enter a new user? Y or N \n')
+    if molecule_new_user == "N":
+        data_entry_satisfaction = False
+        for item in molecules_user_list:
+            print[molecules_user_list]
+
+    else:
+        data_entry_satisfaction = True
